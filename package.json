@@ -1,0 +1,13 @@
+{
+  "name": "ubersicht-widgets",
+  "packageManager": "yarn@3.6.1",
+  "scripts": {
+    "build": "node build.mjs",
+    "copy": "cp ./dist/* $HOME/Library/Application\\ Support/Übersicht/widgets/"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "esbuild": "^0.28.0",
+    "typescript": "^6.0.2"
+  }
+}
