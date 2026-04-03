@@ -276,7 +276,7 @@ var render = ({
         <Header>
           <Title>
             <Dot />
-            Pull Requests
+            My Pull Requests
           </Title>
         </Header>
         {configMissing && <ConfigMessage>
@@ -305,7 +305,7 @@ var render = ({
       <Header>
         <Title>
           <Dot />
-          Pull Requests
+          My Pull Requests
         </Title>
         <Stats>
           <span>

@@ -344,7 +344,7 @@ export const render = ({
         <Header>
           <Title>
             <Dot />
-            Pull Requests
+            My Pull Requests
           </Title>
         </Header>
         {configMissing && (
@@ -381,7 +381,7 @@ export const render = ({
       <Header>
         <Title>
           <Dot />
-          Pull Requests
+          My Pull Requests
         </Title>
         <Stats>
           <span>
