@@ -3,10 +3,10 @@ import { css, styled, run } from 'uebersicht';
 
 // ── Configuration ──────────────────────────────────────────────────────────────
 const CONFIG_PATH = '$HOME/.config/ubersicht/github-prs.json';
-const GH_FIELDS = 'number,title,state,isDraft,author,reviewDecision,additions,deletions,createdAt,updatedAt,headRefName,url,reviewRequests,labels,comments,statusCheckRollup';
+const GH_FIELDS = 'number,title,state,isDraft,author,reviewDecision,additions,deletions,createdAt,updatedAt,headRefName,url,reviewRequests,assignees,labels,comments,statusCheckRollup';
 
 // ── Command ────────────────────────────────────────────────────────────────────
-export const command = `cat ${CONFIG_PATH} | /usr/bin/python3 -c "import sys,json; repos=json.load(sys.stdin)['repos']; print('\\n'.join(repos))" | while read repo; do echo "---REPO:$repo---"; /opt/homebrew/bin/gh pr list --repo "$repo" --json ${GH_FIELDS} --limit 20; done`;
+export const command = `cat ${CONFIG_PATH} | /usr/bin/python3 -c "import sys,json; repos=json.load(sys.stdin)['repos']; print('\\n'.join(repos))" | while read repo; do echo "---REPO:$repo---"; /opt/homebrew/bin/gh pr list --repo "$repo" --author "@me" --json ${GH_FIELDS} --limit 20; done`;
 
 export const refreshFrequency = 60_000;
 
@@ -25,6 +25,7 @@ interface PR {
   headRefName: string;
   url: string;
   reviewRequests: { login?: string; name?: string }[];
+  assignees: { login: string }[];
   labels: { name: string; color: string }[];
   comments: { id: string }[];
   statusCheckRollup: { state: string; status: string; conclusion: string }[];
@@ -125,6 +126,7 @@ const Wrapper = styled.div`
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   min-width: 1519px;
+  max-width: 1700px;
   overflow: hidden;
 `;
 

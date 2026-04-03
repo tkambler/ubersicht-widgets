@@ -1,8 +1,8 @@
 // src/github-prs/github-prs.tsx
 import { css, styled } from "uebersicht";
 var CONFIG_PATH = "$HOME/.config/ubersicht/github-prs.json";
-var GH_FIELDS = "number,title,state,isDraft,author,reviewDecision,additions,deletions,createdAt,updatedAt,headRefName,url,reviewRequests,labels,comments,statusCheckRollup";
-var command = `cat ${CONFIG_PATH} | /usr/bin/python3 -c "import sys,json; repos=json.load(sys.stdin)['repos']; print('\\n'.join(repos))" | while read repo; do echo "---REPO:$repo---"; /opt/homebrew/bin/gh pr list --repo "$repo" --json ${GH_FIELDS} --limit 20; done`;
+var GH_FIELDS = "number,title,state,isDraft,author,reviewDecision,additions,deletions,createdAt,updatedAt,headRefName,url,reviewRequests,assignees,labels,comments,statusCheckRollup";
+var command = `cat ${CONFIG_PATH} | /usr/bin/python3 -c "import sys,json; repos=json.load(sys.stdin)['repos']; print('\\n'.join(repos))" | while read repo; do echo "---REPO:$repo---"; /opt/homebrew/bin/gh pr list --repo "$repo" --author "@me" --json ${GH_FIELDS} --limit 20; done`;
 var refreshFrequency = 6e4;
 function parsePRs(output) {
   if (!output || output.trim() === "") return [];
@@ -90,6 +90,7 @@ var Wrapper = styled.div`
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   min-width: 1519px;
+  max-width: 1700px;
   overflow: hidden;
 `;
 var Header = styled.div`
